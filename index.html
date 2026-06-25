@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I See You — Hành Trình Tìm Lại Mình | Sunny Trang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#F5A623',
+            'gold-dark': '#E8960C',
+            'gold-light': '#FEF3DC',
+            cream: '#FDF8F0',
+            'cream-dark': '#F5EDD8',
+            dark: '#1A1208',
+            'brown-soft': '#7A5C2E',
+          },
+          fontFamily: {
+            sans: ['Be Vietnam Pro', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Be Vietnam Pro', sans-serif; background-color: #FDF8F0; color: #1A1208; }
+    .gold-gradient { background: linear-gradient(135deg, #F5A623 0%, #E8960C 50%, #D4820A 100%); }
+    .text-gold-gradient { background: linear-gradient(135deg, #E8960C, #D4820A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sun-glow { box-shadow: 0 0 40px rgba(245, 166, 35, 0.3); }
+    .card-warm { background: #FFFDF7; border: 1px solid #F5E6C0; border-radius: 16px; }
+    .btn-gold { background: linear-gradient(135deg, #F5A623, #E8960C); color: white; font-weight: 700; padding: 16px 32px; border-radius: 12px; font-size: 18px; transition: all 0.3s; box-shadow: 0 4px 20px rgba(232, 150, 12, 0.4); }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232, 150, 12, 0.5); }
+    .section-divider { border: none; height: 2px; background: linear-gradient(to right, transparent, #F5A623, transparent); margin: 0; }
+    .sticky-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(253, 248, 240, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #F5E6C0; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+    .float { animation: float 4s ease-in-out infinite; }
+    .pain-card { border-left: 4px solid #F5A623; background: #FFFDF7; border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 16px; }
+    .day-card { background: #FFFDF7; border: 1px solid #F5E6C0; border-radius: 12px; padding: 20px; transition: all 0.3s; }
+    .day-card:hover { border-color: #F5A623; box-shadow: 0 4px 20px rgba(245, 166, 35, 0.15); transform: translateY(-2px); }
+    .testimonial-card { background: linear-gradient(135deg, #FFFDF7, #FEF3DC); border: 1px solid #F5E6C0; border-radius: 16px; padding: 28px; position: relative; }
+    .testimonial-card::before { content: '"'; font-size: 80px; color: #F5A623; opacity: 0.3; position: absolute; top: -10px; left: 16px; font-family: Georgia, serif; line-height: 1; }
+    .offer-box { background: linear-gradient(135deg, #1A1208, #2D1F0A); border-radius: 20px; color: white; }
+    .offer-item { border-bottom: 1px solid rgba(245, 166, 35, 0.2); padding: 16px 0; display: flex; align-items: flex-start; gap: 12px; }
+    .offer-item:last-child { border-bottom: none; }
+    .guarantee-box { background: linear-gradient(135deg, #FEF3DC, #FDF8F0); border: 2px solid #F5A623; border-radius: 16px; }
+    .faq-item { border-bottom: 1px solid #F5E6C0; }
+    .faq-item summary { cursor: pointer; padding: 20px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item p { padding-bottom: 20px; color: #7A5C2E; line-height: 1.8; }
+    .highlight-number { font-size: 48px; font-weight: 900; color: #F5A623; line-height: 1; }
+    .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
+    .popup-overlay.active { display: flex; }
+    .popup-box { background: #FDF8F0; border-radius: 20px; padding: 40px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .input-field { width: 100%; padding: 14px 16px; border: 2px solid #F5E6C0; border-radius: 10px; font-family: 'Be Vietnam Pro', sans-serif; font-size: 16px; background: white; margin-bottom: 12px; outline: none; transition: border-color 0.3s; }
+    .input-field:focus { border-color: #F5A623; }
+    .countdown { display: flex; gap: 8px; justify-content: center; align-items: center; }
+    .countdown-unit { background: #1A1208; color: #F5A623; border-radius: 8px; padding: 8px 12px; text-align: center; min-width: 56px; }
+    .countdown-num { font-size: 28px; font-weight: 900; line-height: 1; display: block; }
+    .countdown-label { font-size: 10px; color: #9C8060; }
+  </style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav py-3 px-4">
+  <div class="max-w-2xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center text-white text-xs font-bold">☀</div>
+      <span class="font-bold text-dark text-sm">Người Mặt Trời</span>
+    </div>
+    <button onclick="openPopup()" class="bg-gold-dark text-white text-sm font-700 px-4 py-2 rounded-full font-semibold hover:bg-gold transition-colors">
+      Nhận Workbook — 199k
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-24 pb-16 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="inline-block bg-gold-light text-brown-soft text-sm font-semibold px-4 py-2 rounded-full mb-6">
+      ☀ Chỉ 31 suất đầu tiên · Early Bird 199k
+    </div>
+
+    <h1 class="text-4xl md:text-5xl font-black text-dark leading-tight mb-6">
+      Khám Phá Thế Mạnh Của Bạn<br/>
+      <span class="text-gold-gradient">Trong 7 Ngày</span><br/>
+      <span class="text-2xl md:text-3xl font-bold text-brown-soft">— dù bạn đang mơ hồ về bản thân đến đâu</span>
+    </h1>
+
+    <p class="text-lg text-brown-soft leading-relaxed mb-8 max-w-xl mx-auto">
+      Dành cho phụ nữ văn phòng 25–40 tuổi đang làm tốt nhưng cảm thấy <strong>trống rỗng</strong> — muốn hiểu mình hơn, hiểu bạn đời và đồng nghiệp hơn, và tự tin bước sang chương mới của cuộc đời.
+    </p>
+
+    <button onclick="openPopup()" class="btn-gold text-xl mb-4 w-full max-w-sm mx-auto block">
+      🌟 Tôi Muốn Tìm Lại Mình — 199k
+    </button>
+    <p class="text-sm text-brown-soft">Giá thường 286k · Còn <strong id="seatCount">31</strong> suất ưu đãi · Giao ngay sau khi đăng ký</p>
+
+    <!-- Author photo -->
+    <div class="mt-12 relative">
+      <div class="w-56 h-56 mx-auto rounded-full overflow-hidden sun-glow border-4 border-gold float">
+        <img src="https://via.placeholder.com/224x224/F5A623/ffffff?text=Sunny+Trang" alt="Sunny Trang" class="w-full h-full object-cover" />
+        <!-- Thay bằng ảnh thật: <img src="sunny-trang.jpg" ... /> -->
+      </div>
+      <div class="mt-4">
+        <p class="font-bold text-dark text-lg">Sunny Trang · Nguyễn Thị Thanh Trang</p>
+        <p class="text-brown-soft text-sm">10 năm phát triển bản thân & tiềm năng con người · Tác giả sách Người Mặt Trời</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- PAIN SECTION -->
+<section class="py-16 px-4 bg-cream-dark">
+  <div class="max-w-2xl mx-auto">
+    <p class="text-center text-brown-soft font-semibold mb-2 uppercase tracking-widest text-sm">Bạn có đang...</p>
+    <h2 class="text-3xl font-black text-center text-dark mb-10">Những dấu hiệu bạn cần dừng lại</h2>
+
+    <div class="pain-card">
+      <p class="font-bold text-dark text-lg mb-1">😔 Làm việc giỏi — nhưng không biết mình đang đi về đâu</p>
+      <p class="text-brown-soft">Bạn hoàn thành tốt mọi thứ, nhưng mỗi tối ngồi lại tự hỏi: <em>"Đây có thật sự là cuộc đời mình muốn không?"</em></p>
+    </div>
+
+    <div class="pain-card">
+      <p class="font-bold text-dark text-lg mb-1">😰 Muốn chuyển việc hoặc làm riêng — nhưng sợ vì chưa biết mình giỏi gì</p>
+      <p class="text-brown-soft">Cơ hội thì thấy đầy, nhưng chân cứ đứng yên vì không tự tin vào thế mạnh thật sự của bản thân.</p>
+    </div>
+
+    <div class="pain-card">
+      <p class="font-bold text-dark text-lg mb-1">😶 Cảm thấy vô hình — ngay cả với chính mình</p>
+      <p class="text-brown-soft">Bạn hiểu mọi người xung quanh — nhưng khi ai hỏi <em>"Bạn muốn gì?"</em> thì lại không biết trả lời.</p>
+    </div>
+
+    <div class="mt-8 bg-gold-light rounded-2xl p-6 text-center">
+      <p class="font-bold text-dark text-xl">Tệ nhất là —</p>
+      <p class="text-brown-soft mt-2 text-lg leading-relaxed">Bạn biết mình cần thay đổi. Nhưng không biết bắt đầu từ đâu. Và ngày này qua ngày khác, bạn vẫn đang sống theo quán tính — không phải theo lựa chọn.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- SOLUTION -->
+<section class="py-16 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-4">Sawubona · Tôi nhìn thấy bạn</p>
+    <h2 class="text-3xl font-black text-dark mb-6">Điều gì sẽ khác nếu bạn<br/><span class="text-gold-gradient">thật sự nhìn thấy chính mình?</span></h2>
+
+    <p class="text-brown-soft leading-relaxed mb-8 text-lg">
+      Trong triết lý Zulu, <strong>"Sawubona"</strong> không chỉ là lời chào — mà là <em>"Tôi nhìn thấy con người thật của bạn, tôi công nhận giá trị của bạn, bạn không vô hình trong mắt tôi."</em>
+    </p>
+    <p class="text-brown-soft leading-relaxed mb-10 text-lg">
+      <strong>I See You</strong> là workbook 7 ngày được xây dựng trên triết lý đó — giúp bạn lần đầu tiên thật sự nhìn thấy chính mình: thế mạnh, sứ mệnh, và hướng đi tiếp theo.
+    </p>
+
+    <div class="grid grid-cols-2 gap-4 text-left mb-8">
+      <div class="card-warm p-4">
+        <p class="text-red-400 font-semibold mb-2">❌ Không dành cho</p>
+        <ul class="text-sm text-brown-soft space-y-2">
+          <li>· Người muốn thành công nhanh chóng</li>
+          <li>· Người không sẵn sàng nhìn thẳng vào bản thân</li>
+          <li>· Người tìm công thức có sẵn để áp vào</li>
+        </ul>
+      </div>
+      <div class="card-warm p-4 border-gold">
+        <p class="text-gold font-semibold mb-2">✅ Dành cho</p>
+        <ul class="text-sm text-brown-soft space-y-2">
+          <li>· Phụ nữ 25–40 muốn sống thật với mình</li>
+          <li>· Người muốn hiểu thế mạnh để đi đúng hướng</li>
+          <li>· Ai đang đứng trước một quyết định lớn</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- BENEFITS -->
+<section class="py-16 px-4 bg-cream-dark">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-10">Sau 7 ngày, bạn sẽ có</h2>
+    <div class="space-y-4">
+      <div class="flex gap-4 items-start card-warm p-5">
+        <span class="text-2xl">🎯</span>
+        <div><p class="font-bold text-dark">Nhìn rõ thế mạnh cốt lõi của mình</p><p class="text-brown-soft text-sm mt-1">Để bạn có thể tự tin nói: "Tôi giỏi điều này — và tôi sẽ xây trên nó."</p></div>
+      </div>
+      <div class="flex gap-4 items-start card-warm p-5">
+        <span class="text-2xl">🌅</span>
+        <div><p class="font-bold text-dark">Tuyên ngôn cá nhân viết bằng tay mình</p><p class="text-brown-soft text-sm mt-1">Không phải template chung chung — mà là câu nói định nghĩa con người bạn, bằng ngôn ngữ của chính bạn.</p></div>
+      </div>
+      <div class="flex gap-4 items-start card-warm p-5">
+        <span class="text-2xl">🧭</span>
+        <div><p class="font-bold text-dark">Biết mình đang đứng ở đâu và đi về đâu</p><p class="text-brown-soft text-sm mt-1">Không còn sống theo quán tính — mà theo lựa chọn có ý thức.</p></div>
+      </div>
+      <div class="flex gap-4 items-start card-warm p-5">
+        <span class="text-2xl">💛</span>
+        <div><p class="font-bold text-dark">Hiểu bạn đời và đồng nghiệp hơn — bắt đầu từ hiểu mình</p><p class="text-brown-soft text-sm mt-1">Khi bạn nhìn thấy chính mình, bạn sẽ nhìn thấy người khác rõ hơn.</p></div>
+      </div>
+      <div class="flex gap-4 items-start card-warm p-5">
+        <span class="text-2xl">✨</span>
+        <div><p class="font-bold text-dark">Cảm giác nhẹ nhàng, an tâm với bản thân</p><p class="text-brown-soft text-sm mt-1">Chỉ 15 phút mỗi ngày — mà có thể thay đổi cách bạn nhìn cả cuộc đời.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- HOW IT WORKS -->
+<section class="py-16 px-4">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-4">Hành Trình 7 Ngày</h2>
+    <p class="text-center text-brown-soft mb-10">Mỗi ngày 15–20 phút · Bài tập viết sâu theo triết lý Sawubona & Namaste</p>
+
+    <div class="grid grid-cols-1 gap-3">
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
+        <div><p class="font-bold text-dark">Sawubona — Tôi Thấy Bạn</p><p class="text-sm text-brown-soft mt-1">Viết "Bức Thư Sawubona" cho chính mình — lần đầu tiên nhìn thấy 3 điều bạn đã bỏ quên về bản thân. <em>(Quick win: hoàn thành trong 24h đầu)</em></p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
+        <div><p class="font-bold text-dark">Mặt Nạ & Con Người Thật</p><p class="text-sm text-brown-soft mt-1">Nhận ra mình đang sống theo kỳ vọng của ai — và điều đó đang lấy đi gì của bạn.</p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
+        <div><p class="font-bold text-dark">Nội Lực Bên Trong</p><p class="text-sm text-brown-soft mt-1">Tìm lại 3 điều mình từng yêu mà đã bỏ quên — và thế mạnh đang chờ được đánh thức.</p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
+        <div><p class="font-bold text-dark">Sứ Mệnh</p><p class="text-sm text-brown-soft mt-1">Trả lời câu hỏi mà bạn đã né tránh từ lâu: <em>"Tôi sinh ra để làm gì?"</em></p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">5</div>
+        <div><p class="font-bold text-dark">Tầm Nhìn</p><p class="text-sm text-brown-soft mt-1">Vẽ bức tranh cuộc sống bạn thật sự muốn — không phải cuộc sống bạn đang chấp nhận.</p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">6</div>
+        <div><p class="font-bold text-dark">Định Vị</p><p class="text-sm text-brown-soft mt-1">Viết Tuyên Ngôn Người Mặt Trời của riêng mình — định nghĩa bạn là ai bằng ngôn ngữ của chính bạn.</p></div>
+      </div>
+      <div class="day-card flex gap-4 items-start">
+        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-white font-bold flex-shrink-0">7</div>
+        <div><p class="font-bold text-dark">Hiện Diện</p><p class="text-sm text-brown-soft mt-1">Cam kết với bản thân. Bước tiếp từ đây — không phải vì phải, mà vì bạn thật sự muốn.</p></div>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-gold-light rounded-2xl p-6 text-center">
+      <p class="text-brown-soft text-sm mb-1">Cách dùng</p>
+      <div class="flex justify-center gap-8 mt-3">
+        <div class="text-center"><p class="highlight-number">7</p><p class="text-sm text-brown-soft">ngày</p></div>
+        <div class="text-center"><p class="highlight-number">×</p><p class="text-sm text-brown-soft"></p></div>
+        <div class="text-center"><p class="highlight-number">15</p><p class="text-sm text-brown-soft">phút/ngày</p></div>
+        <div class="text-center"><p class="highlight-number">=</p><p class="text-sm text-brown-soft"></p></div>
+        <div class="text-center"><p class="highlight-number">☀</p><p class="text-sm text-brown-soft">nhìn thấy mình</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- TESTIMONIALS -->
+<section class="py-16 px-4 bg-cream-dark">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-10">Họ nói gì về hành trình này</h2>
+
+    <div class="testimonial-card mb-6">
+      <p class="text-dark leading-relaxed mt-6 mb-4">
+        "NGƯỜI MẶT TRỜI là nơi bạn phải dũng cảm lột bỏ mặt nạ và đối mặt với chính con người mình… Là nơi khiến bạn vui cười, ngơ ngác, căng thẳng, xấu hổ bật khóc như mưa để tìm xem mình là ai, mình sẽ là ai, mình sống với mục đích gì… Nếu bạn khát khao thay đổi bản thân, hãy đến để được hiểu rõ bản thân mình."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center text-gold font-bold">TA</div>
+        <div><p class="font-bold text-dark text-sm">Nguyễn Tuấn Anh</p><p class="text-xs text-brown-soft">Blockchain Trainer</p></div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <p class="text-dark leading-relaxed mt-6 mb-4">
+        "Điều quan trọng nhất ở chị là luôn thật lòng làm cho người khác cảm thấy rằng họ quan trọng, họ xứng đáng có được hạnh phúc trọn vẹn. Chương trình NGƯỜI MẶT TRỜI đã giúp em và rất nhiều người thay đổi cuộc sống. Cuộc đời em trước khi gặp chị đang đi thẳng, sau đột nhiên rẽ ngang sang một chiều hướng tốt hơn."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center text-gold font-bold">YN</div>
+        <div><p class="font-bold text-dark text-sm">Đỗ Thị Ý Nhi (Park JimMi)</p><p class="text-xs text-brown-soft">Người sáng lập IU 2 Studio</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- OFFER STACK -->
+<section class="py-16 px-4">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-4">Bạn nhận được gì</h2>
+    <p class="text-center text-brown-soft mb-8">Tổng giá trị thật — không phóng đại</p>
+
+    <div class="offer-box p-8 mb-6">
+      <div class="offer-item">
+        <span class="text-gold text-xl flex-shrink-0">📖</span>
+        <div class="flex-1">
+          <p class="font-bold text-white">Workbook PDF "I See You — 7 Ngày Nhìn Thấy Chính Mình"</p>
+          <p class="text-sm text-gray-400 mt-1">7 nghi thức tự khám phá, bài tập viết sâu theo triết lý Sawubona + Namaste</p>
+        </div>
+        <p class="text-gold font-bold flex-shrink-0">299k</p>
+      </div>
+      <div class="offer-item">
+        <span class="text-gold text-xl flex-shrink-0">❓</span>
+        <div class="flex-1">
+          <p class="font-bold text-white">Bộ 30 Câu Hỏi Sawubona</p>
+          <p class="text-sm text-gray-400 mt-1">Nhìn thấy những phần bản thân đang bị bỏ quên, tự hỏi để tự hiểu</p>
+        </div>
+        <p class="text-gold font-bold flex-shrink-0">149k</p>
+      </div>
+      <div class="offer-item">
+        <span class="text-gold text-xl flex-shrink-0">📝</span>
+        <div class="flex-1">
+          <p class="font-bold text-white">Template Tuyên Ngôn Người Mặt Trời</p>
+          <p class="text-sm text-gray-400 mt-1">Điền vào là có ngay định vị cá nhân bằng ngôn ngữ của chính bạn</p>
+        </div>
+        <p class="text-gold font-bold flex-shrink-0">99k</p>
+      </div>
+      <div class="offer-item">
+        <span class="text-gold text-xl flex-shrink-0">🤝</span>
+        <div class="flex-1">
+          <p class="font-bold text-white">7 ngày trong Vòng Tròn Người Mặt Trời</p>
+          <p class="text-sm text-gray-400 mt-1">Sunny đọc và phản hồi cá nhân — không một mình trong hành trình</p>
+        </div>
+        <p class="text-gold font-bold flex-shrink-0">399k</p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-yellow-800">
+        <p class="text-center text-gray-400 text-sm mb-2">Tổng giá trị thật</p>
+        <p class="text-center text-2xl font-bold text-gray-400 line-through mb-1">946.000đ</p>
+        <p class="text-center text-4xl font-black text-gold">199.000đ</p>
+        <p class="text-center text-gray-400 text-sm mt-1">Tiết kiệm 79% · Chỉ dành cho 31 người đầu tiên</p>
+      </div>
+
+      <!-- EARLY BIRD BONUS -->
+      <div class="mt-6 border-2 border-yellow-600 rounded-xl p-5">
+        <p class="text-center text-gold font-bold text-sm uppercase tracking-widest mb-4">🎁 Bonus Early Bird — 31 Suất Đầu Tiên</p>
+        <div class="flex gap-3 items-start mb-3">
+          <span class="text-gold">✦</span>
+          <div><p class="text-white font-semibold">Bản Đồ Ikigai Hoàn Chỉnh</p><p class="text-sm text-gray-400">Biết chính xác thế mạnh nào của bạn đang có giá trị trên thị trường</p></div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <span class="text-gold">✦</span>
+          <div><p class="text-white font-semibold">Bộ Câu Hỏi Xác Định Ikigai</p><p class="text-sm text-gray-400">Tìm giao điểm của 4 vùng: Bạn giỏi gì · Bạn yêu gì · Thế giới cần gì · Ai trả tiền cho điều đó</p></div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="openPopup()" class="btn-gold w-full text-center text-xl">
+      ☀ Tôi Muốn Tìm Lại Mình — 199k
+    </button>
+    <p class="text-center text-sm text-brown-soft mt-3">Giao hàng ngay sau khi đăng ký · Thanh toán an toàn</p>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ABOUT SUNNY -->
+<section class="py-16 px-4 bg-cream-dark">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-10">Người đồng hành cùng bạn</h2>
+    <div class="card-warm p-8">
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+        <div class="w-32 h-32 rounded-full overflow-hidden sun-glow border-4 border-gold flex-shrink-0 mx-auto md:mx-0">
+          <img src="https://via.placeholder.com/128x128/F5A623/ffffff?text=ST" alt="Sunny Trang" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="font-black text-dark text-2xl">Sunny Trang</p>
+          <p class="text-brown-soft font-semibold mb-1">Nguyễn Thị Thanh Trang</p>
+          <p class="text-sm text-gold mb-4">Chân thành · Biết ơn · Yêu thương</p>
+          <p class="text-brown-soft leading-relaxed mb-4">
+            Từng thi rớt đại học, mất định hướng nhiều năm, đứng giữa ranh giới sự sống và cái chết — Sunny đã tìm lại chính mình bằng sức mạnh tiềm thức và hành trình tự khám phá.
+          </p>
+          <p class="text-brown-soft leading-relaxed">
+            Hơn <strong>10 năm</strong> trong lĩnh vực phát triển bản thân, <strong>5 năm</strong> viết sách và tự xuất bản. Tác giả cuốn sách <em>"Người Mặt Trời — Hành Trình Tự Thắp Sáng"</em>. Đã xây dựng cộng đồng <strong>1.000+</strong> người cùng hành trình tìm lại mình.
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-4 mt-8 text-center">
+        <div class="bg-gold-light rounded-xl p-4">
+          <p class="highlight-number text-3xl">10+</p>
+          <p class="text-xs text-brown-soft">năm phát triển bản thân</p>
+        </div>
+        <div class="bg-gold-light rounded-xl p-4">
+          <p class="highlight-number text-3xl">1000+</p>
+          <p class="text-xs text-brown-soft">người trong cộng đồng</p>
+        </div>
+        <div class="bg-gold-light rounded-xl p-4">
+          <p class="highlight-number text-3xl">1</p>
+          <p class="text-xs text-brown-soft">cuốn sách xuất bản</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- GUARANTEE -->
+<section class="py-16 px-4">
+  <div class="max-w-2xl mx-auto">
+    <div class="guarantee-box p-8 text-center">
+      <div class="w-16 h-16 gold-gradient rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">🛡</div>
+      <h3 class="text-2xl font-black text-dark mb-4">Cam Kết Của Mình</h3>
+      <p class="text-brown-soft leading-relaxed text-lg">
+        Nếu bạn hoàn thành đủ <strong>7 ngày bài tập</strong> mà không cảm thấy bất kỳ thay đổi nào — mình sẽ đồng hành <strong>1-1</strong> với bạn, miễn phí, cho đến khi bạn thật sự nhìn thấy chính mình.
+      </p>
+      <p class="text-brown-soft mt-4 text-sm italic">
+        Mình tin vào hành trình này — và mình tin vào bạn.
+      </p>
+      <p class="font-bold text-dark mt-4">— Sunny Trang</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- FAQ -->
+<section class="py-16 px-4 bg-cream-dark">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-black text-center text-dark mb-10">Câu hỏi thường gặp</h2>
+    <div class="card-warm p-6">
+
+      <details class="faq-item">
+        <summary>Tôi chưa từng làm journaling bao giờ, có làm được không?<span class="text-gold">+</span></summary>
+        <p>Hoàn toàn được. Workbook được thiết kế cho người mới bắt đầu — mỗi ngày chỉ cần trả lời 3–5 câu hỏi, không cần viết hay, không cần hoàn hảo. Chỉ cần thật.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Mất bao lâu để thấy kết quả?<span class="text-gold">+</span></summary>
+        <p>Ngay Ngày 1 sau khi viết "Bức Thư Sawubona", nhiều người đã cảm thấy nhẹ hơn — vì lần đầu tiên được nói thật với chính mình. Kết quả rõ nhất thường đến vào Ngày 4–5 khi xác định được sứ mệnh và thế mạnh.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Tôi đang đi làm văn phòng bận rộn, có đủ thời gian không?<span class="text-gold">+</span></summary>
+        <p>Mỗi ngày chỉ cần 15–20 phút — có thể làm buổi sáng trước giờ làm, giờ nghỉ trưa, hoặc tối trước khi ngủ. Nhiều học viên làm trên điện thoại ngay trong giờ nghỉ.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Sau khi mua, tôi nhận sản phẩm như thế nào?<span class="text-gold">+</span></summary>
+        <p>Sau khi đăng ký và thanh toán, bạn sẽ nhận link tải về qua email trong vòng 15 phút. Đồng thời được thêm vào nhóm Người Mặt Trời để bắt đầu 7 ngày đồng hành.</p>
+      </details>
+
+      <details class="faq-item" style="border-bottom:none">
+        <summary>Workbook này khác gì với các sách phát triển bản thân khác?<span class="text-gold">+</span></summary>
+        <p>Hầu hết sách self-help cho bạn kiến thức — workbook này cho bạn trải nghiệm. Triết lý Sawubona + Ikigai không chỉ là lý thuyết mà là hành trình bạn tự đi, tự viết, tự khám phá. Không có câu trả lời mẫu — chỉ có câu trả lời của riêng bạn.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- FINAL CTA -->
+<section class="py-16 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Sawubona · Sikhona</p>
+    <h2 class="text-3xl font-black text-dark mb-4">Bạn không vô hình.<br/>Bạn chỉ chưa được nhìn thấy — bởi chính mình.</h2>
+    <p class="text-brown-soft leading-relaxed mb-8 text-lg">
+      7 ngày · 15 phút mỗi ngày · Và lần đầu tiên bạn thật sự nói với chính mình: <em>"Tôi thấy bạn rồi."</em>
+    </p>
+
+    <!-- Countdown -->
+    <div class="mb-6">
+      <p class="text-sm text-brown-soft mb-3">⏰ Giá early bird kết thúc sau</p>
+      <div class="countdown justify-center">
+        <div class="countdown-unit"><span class="countdown-num" id="cd-days">10</span><span class="countdown-label">NGÀY</span></div>
+        <span class="text-gold font-bold text-2xl">:</span>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-hours">00</span><span class="countdown-label">GIỜ</span></div>
+        <span class="text-gold font-bold text-2xl">:</span>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-mins">00</span><span class="countdown-label">PHÚT</span></div>
+        <span class="text-gold font-bold text-2xl">:</span>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-secs">00</span><span class="countdown-label">GIÂY</span></div>
+      </div>
+    </div>
+
+    <button onclick="openPopup()" class="btn-gold text-xl w-full max-w-sm mx-auto block mb-4">
+      ☀ Bắt Đầu Hành Trình — 199k
+    </button>
+    <p class="text-sm text-brown-soft">Còn <strong>31 suất</strong> giá ưu đãi · Sau đó 286k</p>
+
+    <p class="mt-8 text-brown-soft text-sm italic">
+      P.S: Mỗi ngày bạn không hành động là một ngày bạn tiếp tục sống mà chưa thật sự biết mình là ai. 7 ngày — 15 phút. Chỉ vậy thôi.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark py-8 px-4 text-center">
+  <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">☀</div>
+  <p class="text-gray-400 text-sm mb-1">Sunny Trang · Người Mặt Trời</p>
+  <p class="text-gray-600 text-xs">Lan tỏa giá trị tích cực và hạnh phúc</p>
+  <p class="text-gray-600 text-xs mt-2">sunnytrangbiz@gmail.com · 0913 922 713</p>
+  <p class="text-gray-700 text-xs mt-4">© 2025 Sunny Trang. Tất cả quyền được bảo lưu.</p>
+</footer>
+
+<!-- POPUP FORM -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopupOnOverlay(event)">
+  <div class="popup-box">
+    <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center text-white text-xl mx-auto mb-4">☀</div>
+    <h3 class="text-2xl font-black text-dark mb-2">Bắt Đầu Hành Trình</h3>
+    <p class="text-brown-soft text-sm mb-6">Điền thông tin để nhận workbook + được thêm vào nhóm Người Mặt Trời</p>
+
+    <input type="text" class="input-field" placeholder="Họ và tên của bạn" id="formName" />
+    <input type="email" class="input-field" placeholder="Email nhận sản phẩm" id="formEmail" />
+    <input type="tel" class="input-field" placeholder="Số điện thoại (để Sunny liên hệ)" id="formPhone" />
+
+    <div class="bg-gold-light rounded-xl p-4 mb-4 text-left">
+      <p class="text-sm font-bold text-dark mb-1">Tóm tắt đơn hàng</p>
+      <div class="flex justify-between text-sm text-brown-soft">
+        <span>I See You Workbook + Ikigai Bonus</span>
+        <span class="font-bold text-dark">199.000đ</span>
+      </div>
+    </div>
+
+    <button onclick="submitForm()" class="btn-gold w-full mb-3" style="font-size:16px; padding:14px 24px;">
+      Xác Nhận & Thanh Toán — 199k
+    </button>
+    <button onclick="closePopup()" class="text-sm text-brown-soft hover:text-dark transition-colors">Đóng</button>
+
+    <p class="text-xs text-gray-400 mt-4">Sau khi xác nhận, Sunny sẽ liên hệ qua số điện thoại để hướng dẫn thanh toán và giao sản phẩm.</p>
+  </div>
+</div>
+
+<script>
+  // Popup
+  function openPopup() {
+    document.getElementById('popupOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closePopupOnOverlay(e) {
+    if (e.target === document.getElementById('popupOverlay')) closePopup();
+  }
+  function submitForm() {
+    const name = document.getElementById('formName').value;
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    if (!name || !email || !phone) {
+      alert('Vui lòng điền đầy đủ thông tin nhé!');
+      return;
+    }
+    // TODO B4: Thay bằng webhook thực (Resend + SePay)
+    alert('Cảm ơn ' + name + '! Sunny sẽ liên hệ với bạn qua số ' + phone + ' trong vòng 24h. ☀');
+    closePopup();
+  }
+
+  // Countdown — 10 ngày từ bây giờ
+  const deadline = new Date();
+  deadline.setDate(deadline.getDate() + 10);
+  function updateCountdown() {
+    const now = new Date();
+    const diff = deadline - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent = '00';
+      document.getElementById('cd-secs').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
