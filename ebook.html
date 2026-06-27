@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>I See You — 7 Ngày Nhìn Thấy Chính Mình · Sunny Trang</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#E8960C;--gold-light:#FEF3DC;--gold-soft:#F5A623;
+  --cream:#FDF8F0;--cream-dark:#F5EDD8;
+  --dark:#1A1208;--brown:#7A5C2E;--brown-light:#B8924A;
+  --white:#FFFDF7;--border:#F0E0B8;
+}
+body{font-family:'Be Vietnam Pro',sans-serif;background:var(--cream);color:var(--dark);line-height:1.8;font-size:16px}
+
+/* LAYOUT */
+.layout{display:flex;min-height:100vh;max-width:1100px;margin:0 auto}
+.sidebar{width:260px;flex-shrink:0;background:var(--dark);position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 0}
+.content{flex:1;padding:48px 40px;max-width:760px}
+
+/* SIDEBAR */
+.sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(245,166,35,0.2)}
+.sidebar-logo .sun{width:36px;height:36px;background:linear-gradient(135deg,#F5A623,#E8960C);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;margin-bottom:8px}
+.sidebar-logo h2{color:#F5A623;font-size:13px;font-weight:700;letter-spacing:.05em}
+.sidebar-logo p{color:rgba(255,255,255,0.4);font-size:11px;margin-top:2px}
+
+.progress-wrap{padding:16px 20px;border-bottom:1px solid rgba(245,166,35,0.1)}
+.progress-label{color:rgba(255,255,255,0.4);font-size:11px;margin-bottom:6px}
+.progress-bar{background:rgba(255,255,255,0.1);border-radius:4px;height:4px}
+.progress-fill{background:linear-gradient(90deg,#F5A623,#E8960C);height:4px;border-radius:4px;transition:width .3s;width:0%}
+.progress-text{color:#F5A623;font-size:11px;margin-top:4px}
+
+.nav-section{padding:16px 0}
+.nav-section-title{color:rgba(255,255,255,0.3);font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:0 20px;margin-bottom:8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;transition:all .2s;border-left:3px solid transparent;text-decoration:none}
+.nav-item:hover{background:rgba(245,166,35,0.08);border-left-color:rgba(245,166,35,0.3)}
+.nav-item.active{background:rgba(245,166,35,0.12);border-left-color:#F5A623}
+.nav-item .day-badge{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-item.active .day-badge{background:#F5A623;color:#1A1208}
+.nav-item .day-title{color:rgba(255,255,255,0.5);font-size:12px;font-weight:500}
+.nav-item.active .day-title{color:white}
+.nav-item.done .day-badge{background:rgba(245,166,35,0.3);color:#F5A623}
+
+/* CONTENT SECTIONS */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* COVER */
+.cover{text-align:center;padding:48px 0}
+.cover .tagline{color:var(--brown-light);font-size:13px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px}
+.cover h1{font-family:'Playfair Display',serif;font-size:52px;color:var(--dark);line-height:1.1;margin-bottom:8px}
+.cover h1 span{color:var(--gold)}
+.cover .subtitle{font-size:20px;color:var(--brown);font-weight:400;margin-bottom:32px}
+.cover .sun-visual{width:120px;height:120px;background:linear-gradient(135deg,#F5A623,#E8960C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:56px;margin:32px auto;box-shadow:0 0 60px rgba(245,166,35,0.3)}
+.cover .author{color:var(--brown);font-size:14px}
+.cover .author strong{color:var(--dark)}
+
+/* TYPOGRAPHY */
+h2{font-family:'Playfair Display',serif;font-size:32px;color:var(--dark);margin-bottom:8px;line-height:1.2}
+h3{font-size:18px;font-weight:700;color:var(--dark);margin:28px 0 12px}
+h4{font-size:15px;font-weight:700;color:var(--brown);margin:20px 0 8px;text-transform:uppercase;letter-spacing:.05em}
+p{margin-bottom:16px;color:#3D2C14;line-height:1.9}
+strong{color:var(--dark)}
+em{color:var(--brown);font-style:italic}
+
+.day-header{margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid var(--border)}
+.day-number{color:var(--gold);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.day-objective{background:var(--gold-light);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:16px 20px;margin-top:16px}
+.day-objective p{margin:0;color:var(--brown);font-size:14px}
+.day-objective strong{color:var(--dark)}
+
+/* QUOTE */
+.quote{border-left:4px solid var(--gold);background:rgba(232,150,12,0.06);padding:20px 24px;border-radius:0 12px 12px 0;margin:24px 0}
+.quote p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--dark);margin:0;line-height:1.6}
+.quote cite{display:block;font-size:12px;color:var(--brown-light);margin-top:10px;font-style:normal}
+
+/* STORY BOX */
+.story-box{background:linear-gradient(135deg,var(--white),var(--gold-light));border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0;position:relative}
+.story-box::before{content:'✦';color:var(--gold);font-size:24px;position:absolute;top:-12px;left:24px;background:var(--cream);padding:0 8px}
+.story-box h4{color:var(--gold);margin-top:0}
+.story-box p{font-size:15px;color:#4A3520}
+
+/* EXERCISE BOX */
+.exercise{background:var(--dark);border-radius:16px;padding:28px;margin:28px 0;color:white}
+.exercise h4{color:#F5A623;font-size:14px;text-transform:uppercase;letter-spacing:.1em;margin-top:0;margin-bottom:16px}
+.exercise p,.exercise li{color:rgba(255,255,255,0.8);font-size:15px}
+.exercise ul,.exercise ol{padding-left:20px;margin-bottom:12px}
+.exercise li{margin-bottom:8px}
+.exercise .write-prompt{background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);border-radius:10px;padding:16px;margin-top:16px}
+.exercise .write-prompt p{color:rgba(255,255,255,0.9);margin:0;font-style:italic}
+
+/* CHECKLIST */
+.checklist{margin:20px 0}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-item input[type=checkbox]{width:20px;height:20px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:2px}
+.check-item label{color:#3D2C14;font-size:15px;cursor:pointer;line-height:1.6}
+.check-item input:checked + label{color:var(--brown-light);text-decoration:line-through}
+
+/* IKIGAI VISUAL */
+.ikigai-diagram{margin:28px 0;text-align:center}
+.ikigai-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:500px;margin:0 auto}
+.ikigai-cell{border-radius:16px;padding:20px;text-align:center}
+.ikigai-cell.love{background:#FEF3DC;border:2px solid #F5A623}
+.ikigai-cell.good{background:#E8F4FD;border:2px solid #5BA4D4}
+.ikigai-cell.world{background:#E8F8E8;border:2px solid #4CAF50}
+.ikigai-cell.paid{background:#FCE8E8;border:2px solid #E57373}
+.ikigai-cell .icon{font-size:28px;margin-bottom:8px}
+.ikigai-cell h5{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.ikigai-cell p{font-size:12px;color:var(--brown);margin:0}
+.ikigai-center{background:linear-gradient(135deg,#F5A623,#E8960C);border-radius:50%;width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin:12px auto;box-shadow:0 4px 20px rgba(232,150,12,0.4)}
+.ikigai-center span{font-size:11px;font-weight:700;color:white;text-align:center;line-height:1.3}
+
+/* FLOWCHART */
+.flowchart{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:20px 0;justify-content:center}
+.flow-step{background:var(--dark);color:var(--gold-light);padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;text-align:center}
+.flow-step.accent{background:var(--gold);color:var(--dark)}
+.flow-arrow{color:var(--gold);font-size:20px;font-weight:bold}
+
+/* ROUTINE VISUAL */
+.routine-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.routine-card{border-radius:14px;padding:20px}
+.routine-card.morning{background:linear-gradient(135deg,#FEF3DC,#FDF8F0);border:1px solid #F0E0B8}
+.routine-card.evening{background:linear-gradient(135deg,#1A1208,#2D1F0A);border:1px solid rgba(245,166,35,0.2)}
+.routine-card.evening h5,.routine-card.evening li{color:rgba(255,255,255,0.85)}
+.routine-card h5{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:12px}
+.routine-card ul{padding-left:16px;list-style:none}
+.routine-card li{font-size:13px;color:#4A3520;margin-bottom:8px;padding-left:4px}
+.routine-card li::before{content:'☀ ';color:var(--gold)}
+.routine-card.evening li::before{content:'🌙 ';color:#F5A623}
+
+/* TIMELINE */
+.timeline{margin:24px 0;position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:24px}
+.timeline-dot{position:absolute;left:-24px;width:16px;height:16px;background:var(--gold);border-radius:50%;top:3px}
+.timeline-item h5{font-size:14px;font-weight:700;color:var(--dark)}
+.timeline-item p{font-size:13px;color:var(--brown);margin:4px 0 0}
+
+/* TEMPLATE BOX */
+.template-box{background:var(--white);border:2px dashed var(--border);border-radius:14px;padding:24px;margin:20px 0}
+.template-box h4{color:var(--gold);margin-top:0}
+.template-line{border-bottom:1px solid var(--border);padding:10px 0;color:var(--brown);font-size:14px}
+
+/* BEFORE AFTER */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.ba-box{border-radius:12px;padding:16px}
+.ba-box.before{background:#F5F0EB;border:2px dashed #C8B89A}
+.ba-box.after{background:#EAF3DE;border:2px solid #4CAF50}
+.ba-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;font-weight:700}
+.ba-box.before .ba-label{color:#8A7060}
+.ba-box.after .ba-label{color:#2E7D32}
+.ba-box ul{padding-left:16px;font-size:13px}
+.ba-box.before ul{color:#6B5A48}
+.ba-box.after ul{color:#1B5E20}
+.ba-box li{margin-bottom:6px}
+
+/* STAT CARD */
+.stat-card{background:var(--dark);border-radius:14px;padding:24px;margin:20px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px}
+.stat-item{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);line-height:1}
+.stat-desc{color:rgba(255,255,255,0.6);font-size:12px;margin-top:6px}
+
+/* DECLARATION */
+.declaration{background:linear-gradient(135deg,var(--dark),#2D1F0A);border-radius:20px;padding:36px;margin:28px 0;text-align:center;border:1px solid rgba(245,166,35,0.2)}
+.declaration h3{color:#F5A623;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:20px}
+.declaration-lines div{border-bottom:1px solid rgba(245,166,35,0.2);padding:14px 0;color:rgba(255,255,255,0.7);font-size:14px;text-align:left}
+.declaration-lines span{color:#F5A623;font-weight:600}
+
+/* APPENDIX */
+.appendix-section{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px;margin:20px 0}
+.appendix-section h3{color:var(--gold);font-family:'Be Vietnam Pro',sans-serif;font-size:16px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+
+/* NAV BUTTONS */
+.nav-buttons{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Be Vietnam Pro',sans-serif;transition:all .2s}
+.btn-prev{background:var(--white);border:1px solid var(--border);color:var(--brown)}
+.btn-prev:hover{border-color:var(--gold);color:var(--dark)}
+.btn-next{background:linear-gradient(135deg,#F5A623,#E8960C);color:white;box-shadow:0 4px 16px rgba(232,150,12,0.3)}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,150,12,0.4)}
+.btn-print{background:var(--white);border:1px solid var(--border);color:var(--brown);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif}
+
+/* MOBILE */
+@media(max-width:768px){
+  .layout{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:relative;overflow-x:auto}
+  .content{padding:28px 20px}
+  .routine-grid,.before-after,.ikigai-grid{grid-template-columns:1fr}
+  h2{font-size:26px}
+  .cover h1{font-size:36px}
+}
+
+@media print{.sidebar,.nav-buttons,.btn-print{display:none}.content{padding:0}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sun">☀</div>
+    <h2>I See You</h2>
+    <p>7 Ngày Nhìn Thấy Chính Mình</p>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">Tiến độ của bạn</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 7 ngày</div>
+  </div>
+  <nav class="nav-section">
+    <div class="nav-section-title">Hành Trình</div>
+    <a class="nav-item active" onclick="showSection('cover',this)">
+      <div class="day-badge">☀</div>
+      <div class="day-title">Trang Bìa</div>
+    </a>
+    <a class="nav-item" onclick="showSection('intro',this)">
+      <div class="day-badge">✦</div>
+      <div class="day-title">Lời Mở Đầu</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day1',this)" id="nav-day1">
+      <div class="day-badge">1</div>
+      <div class="day-title">Sawubona — Tôi Thấy Bạn</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day2',this)" id="nav-day2">
+      <div class="day-badge">2</div>
+      <div class="day-title">Niềm Tin Giới Hạn</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day3',this)" id="nav-day3">
+      <div class="day-badge">3</div>
+      <div class="day-title">Ikigai — Tìm Giao Điểm</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day4',this)" id="nav-day4">
+      <div class="day-badge">4</div>
+      <div class="day-title">Bạn Đã Là Ai Rồi?</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day5',this)" id="nav-day5">
+      <div class="day-badge">5</div>
+      <div class="day-title">Sứ Mệnh & Tầm Nhìn</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day6',this)" id="nav-day6">
+      <div class="day-badge">6</div>
+      <div class="day-title">Routine Tự Thắp Sáng</div>
+    </a>
+    <a class="nav-item" onclick="showSection('day7',this)" id="nav-day7">
+      <div class="day-badge">7</div>
+      <div class="day-title">Tuyên Ngôn Người Mặt Trời</div>
+    </a>
+    <a class="nav-item" onclick="showSection('appendix',this)">
+      <div class="day-badge">📎</div>
+      <div class="day-title">Phụ Lục</div>
+    </a>
+  </nav>
+  <div style="padding:16px 20px;border-top:1px solid rgba(245,166,35,0.1);margin-top:auto">
+    <button class="btn-print" onclick="window.print()">🖨 Tải PDF</button>
+  </div>
+</aside>
+
+<!-- CONTENT -->
+<main class="content">
+
+<!-- COVER -->
+<div class="section active" id="cover">
+  <div class="cover">
+    <div class="tagline">Sunny Trang · Người Mặt Trời</div>
+    <h1>I See <span>You</span></h1>
+    <div class="subtitle">7 Ngày Nhìn Thấy Chính Mình</div>
+    <div class="sun-visual">☀</div>
+    <div class="quote" style="text-align:left;max-width:480px;margin:0 auto 32px">
+      <p>"Sawubona — Tôi nhìn thấy bạn.<br/>Sikhona — Tôi ở đây."</p>
+      <cite>— Triết lý Zulu, Nam Phi</cite>
+    </div>
+    <p style="color:var(--brown);max-width:420px;margin:0 auto 24px">Dành cho phụ nữ đang làm tốt mọi thứ — nhưng cảm thấy trống rỗng. Mỗi ngày 15 phút · 7 ngày · Một hành trình về với chính mình.</p>
+    <div class="author">Tác giả: <strong>Nguyễn Thị Thanh Trang (Sunny Trang)</strong><br/>Tác giả sách "Người Mặt Trời — Hành Trình Tự Thắp Sáng"</div>
+  </div>
+  <div class="nav-buttons">
+    <div></div>
+    <button class="btn btn-next" onclick="showSection('intro',document.querySelector('[onclick*=intro]'))">Bắt Đầu →</button>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="section" id="intro">
+  <div class="day-header">
+    <div class="day-number">Lời Mở Đầu</div>
+    <h2>Tại Sao Workbook Này Ra Đời</h2>
+  </div>
+
+  <p>Tôi từng là người không biết mình là ai.</p>
+  <p>Thi rớt đại học. Loay hoay nhiều năm với những công việc không đúng thế mạnh. Luôn tự hỏi: <em>"Mình là ai? Đâu là nơi tôi thực sự thuộc về?"</em></p>
+  <p>Điều tệ nhất không phải là mất tiền hay mất cơ hội. Điều tệ nhất là <strong>cảm thấy vô hình ngay cả với chính mình</strong>.</p>
+  <p>Rồi tôi tìm ra sức mạnh tiềm thức. Tôi học về Ikigai. Tôi bắt đầu đặt những câu hỏi khác. Tôi xây dựng một routine nhỏ mỗi sáng mỗi tối. Và từng ngày — từng ngày một — tôi bắt đầu nhìn thấy chính mình.</p>
+  <p>Workbook này là tổng hợp những gì đã thực sự thay đổi cuộc đời tôi — và hàng trăm người trong cộng đồng Người Mặt Trời. Không phải lý thuyết. Là hành trình.</p>
+
+  <div class="quote">
+    <p>"Bạn không cần tìm kiếm mặt trời ở đâu xa. Mặt trời ở ngay trong bạn."</p>
+  </div>
+
+  <h3>Tồn Tại Hay Sống?</h3>
+  <p>Có hai trạng thái rất khác nhau mà nhiều người không nhận ra mình đang ở đâu:</p>
+  <div class="before-after">
+    <div class="ba-box before">
+      <div class="ba-label">Tồn tại</div>
+      <ul>
+        <li>Qua ngày đủ ngày</li>
+        <li>Làm vì phải làm</li>
+        <li>Sống theo kỳ vọng người khác</li>
+        <li>Thức dậy không có lý do</li>
+      </ul>
+    </div>
+    <div class="ba-box after">
+      <div class="ba-label">Sống</div>
+      <ul>
+        <li>Mỗi ngày có ý nghĩa</li>
+        <li>Làm vì yêu thích và có giá trị</li>
+        <li>Sống thật với chính mình</li>
+        <li>Thức dậy với lý do rõ ràng</li>
+      </ul>
+    </div>
+  </div>
+  <p>Workbook này không giúp bạn <em>tồn tại tốt hơn</em>. Nó giúp bạn bắt đầu <strong>thật sự sống</strong>.</p>
+
+  <h3>Người Mặt Trời Bên Trong Bạn</h3>
+  <div style="background:linear-gradient(135deg,#FEF3DC,#FDF8F0);border:1px solid #F0E0B8;border-radius:16px;padding:28px;margin:20px 0">
+    <p>Bên trong bạn luôn có một <strong>Mặt Trời rất sáng</strong> — nguồn năng lượng, giá trị, và ánh sáng riêng của bạn. Nó không bao giờ tắt.</p>
+    <p>Nhưng đôi khi, những <strong>đám mây</strong> che mờ nó đi:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin:16px 0">
+      <span style="background:rgba(90,90,90,0.1);border-radius:20px;padding:6px 14px;font-size:13px;color:#5A5A5A">☁ Suy nghĩ tiêu cực</span>
+      <span style="background:rgba(90,90,90,0.1);border-radius:20px;padding:6px 14px;font-size:13px;color:#5A5A5A">☁ Cảm xúc tiêu cực</span>
+      <span style="background:rgba(90,90,90,0.1);border-radius:20px;padding:6px 14px;font-size:13px;color:#5A5A5A">☁ Niềm tin giới hạn</span>
+      <span style="background:rgba(90,90,90,0.1);border-radius:20px;padding:6px 14px;font-size:13px;color:#5A5A5A">☁ Mâu thuẫn nội tâm</span>
+    </div>
+    <p>Để Mặt Trời trong bạn tỏa sáng trở lại, bạn cần:</p>
+    <div class="flowchart" style="justify-content:flex-start;margin:12px 0">
+      <div class="flow-step" style="font-size:12px">Nhìn thấy<br/>chính mình</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="font-size:12px">Cởi bỏ<br/>đám mây</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="font-size:12px">Tìm ra<br/>Ikigai</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step accent" style="font-size:12px">Tỏa sáng<br/>theo cách riêng</div>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--brown)"><em>7 ngày trong workbook này là hành trình xua tan những đám mây — để Mặt Trời vốn có trong bạn được tỏa sáng trở lại.</em></p>
+  </div>
+
+  <h3>Cách Dùng Workbook Này</h3>
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c0a" onchange="saveCheck(this)"/><label for="c0a">Mỗi ngày chỉ cần <strong>15–20 phút</strong> — sáng sớm, giờ nghỉ trưa, hoặc tối trước khi ngủ</label></div>
+    <div class="check-item"><input type="checkbox" id="c0b" onchange="saveCheck(this)"/><label for="c0b">Lấy giấy bút ra — viết tay có sức mạnh khác hẳn gõ máy</label></div>
+    <div class="check-item"><input type="checkbox" id="c0c" onchange="saveCheck(this)"/><label for="c0c">Không có câu trả lời đúng sai — chỉ có câu trả lời của riêng bạn</label></div>
+    <div class="check-item"><input type="checkbox" id="c0d" onchange="saveCheck(this)"/><label for="c0d">Đọc xong mỗi ngày → tick vào sidebar để theo dõi tiến độ</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('cover',document.querySelector('[onclick*=cover]'))">← Trang Bìa</button>
+    <button class="btn btn-next" onclick="showSection('day1',document.getElementById('nav-day1'))">Ngày 1 →</button>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="section" id="day1">
+  <div class="day-header">
+    <div class="day-number">Ngày 1 · 15 phút</div>
+    <h2>Sawubona — Tôi Thấy Bạn</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Lần đầu tiên nhìn thấy con người thật của mình — không phán xét, không so sánh.</p></div>
+  </div>
+
+  <p>Trong ngôn ngữ Zulu ở Nam Phi, khi gặp nhau người ta không nói <em>"Xin chào"</em>. Họ nói <strong>Sawubona</strong> — <em>"Tôi nhìn thấy bạn."</em></p>
+  <p>Câu đáp lại là <strong>Sikhona</strong> — <em>"Tôi ở đây."</em></p>
+  <p>Đây không phải lời chào thông thường. Đây là sự công nhận sâu sắc nhất mà con người có thể trao cho nhau: <em>Tôi thấy con người thật của bạn. Tôi công nhận giá trị của bạn. Bạn không vô hình trong mắt tôi.</em></p>
+
+  <div class="quote">
+    <p>"Khi nói Sawubona, người ta muốn nói: Tôi thấy bạn, không phải vai trò hay vẻ ngoài của bạn. Bạn xứng đáng được lắng nghe."</p>
+    <cite>— Triết lý Ubuntu, Nam Phi</cite>
+  </div>
+
+  <h3>Vì Sao Chúng Ta Trở Nên Vô Hình Với Chính Mình?</h3>
+  <p>Từ nhỏ, chúng ta được dạy phải làm gì, nên trở thành ai, phải đạt được gì. Những câu nói như <em>"Con không làm được đâu"</em> hay <em>"Phải như thế mới thành công"</em> — từng chút từng chút — xây nên một lớp mặt nạ che đi con người thật bên trong.</p>
+  <p>Lâu dần, chúng ta bắt đầu sống theo kỳ vọng của người khác đến mức quên mất mình thật sự muốn gì, thích gì, là ai.</p>
+  <p><strong>Hôm nay, bạn sẽ bắt đầu nhìn thấy lại chính mình.</strong></p>
+
+  <div class="before-after">
+    <div class="ba-box before">
+      <div class="ba-label">Trước khi bắt đầu</div>
+      <ul>
+        <li>Cảm thấy mờ nhạt, mơ hồ</li>
+        <li>Không biết mình muốn gì</li>
+        <li>Sống theo quán tính</li>
+        <li>Tự phán xét liên tục</li>
+      </ul>
+    </div>
+    <div class="ba-box after">
+      <div class="ba-label">Sau ngày 1</div>
+      <ul>
+        <li>Nhìn thấy 3 điều bị bỏ quên</li>
+        <li>Cảm giác được lắng nghe</li>
+        <li>Kết nối lại với bản thân</li>
+        <li>Không còn một mình</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="story-box">
+    <h4>Câu Chuyện Của Sunny</h4>
+    <p>Có một giai đoạn tôi đứng giữa ranh giới sự sống và cái chết — không phải vì bệnh tật, mà vì tôi đã đánh mất kết nối với chính mình hoàn toàn. Tôi không biết mình muốn gì, sống vì điều gì.</p>
+    <p>Khoảnh khắc tôi lần đầu tiên ngồi xuống và tự hỏi <em>"Mình thật sự cảm thấy thế nào?"</em> — không có ai phán xét, không cần câu trả lời đúng — tôi đã khóc. Vì lần đầu tiên tôi được là chính mình.</p>
+    <p><strong>Đó là khoảnh khắc Sawubona với chính tôi.</strong></p>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 1 — Bức Thư Sawubona</h4>
+    <p>Lấy giấy bút ra. Viết một bức thư ngắn cho chính mình — như thể bạn đang nói chuyện với người bạn thân nhất.</p>
+    <div class="write-prompt">
+      <p>Bắt đầu bằng: <em>"Này [tên bạn], tôi thấy bạn rồi. Tôi biết bạn đang..."</em></p>
+    </div>
+    <p style="margin-top:16px">Trong thư, hãy viết:</p>
+    <ol>
+      <li>3 điều bạn đang thật sự cảm thấy nhưng chưa nói với ai</li>
+      <li>3 điều bạn đã làm tốt gần đây mà chưa tự công nhận cho mình</li>
+      <li>1 điều bạn muốn bản thân mình nghe nhất lúc này</li>
+    </ol>
+    <div class="write-prompt" style="margin-top:16px">
+      <p><em>Không cần viết hay. Không cần hoàn hảo. Chỉ cần thật.</em></p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c1a" onchange="saveCheck(this);updateProgress()"/><label for="c1a">Đã đọc xong Ngày 1</label></div>
+    <div class="check-item"><input type="checkbox" id="c1b" onchange="saveCheck(this)"/><label for="c1b">Đã viết xong Bức Thư Sawubona</label></div>
+    <div class="check-item"><input type="checkbox" id="c1c" onchange="saveCheck(this)"/><label for="c1c">Đã tự nói với mình: "Tôi thấy bạn rồi"</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('intro',document.querySelector('[onclick*=intro]'))">← Lời Mở Đầu</button>
+    <button class="btn btn-next" onclick="showSection('day2',document.getElementById('nav-day2'))">Ngày 2 →</button>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="section" id="day2">
+  <div class="day-header">
+    <div class="day-number">Ngày 2 · 15 phút</div>
+    <h2>Niềm Tin Giới Hạn — Cởi Bỏ Mặt Nạ</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Nhận ra điều gì đang thật sự kìm hãm bạn — và viết lại câu chuyện mới.</p></div>
+  </div>
+
+  <p>Có những thứ vô hình đang kéo bạn lại mỗi ngày. Không phải hoàn cảnh. Không phải người khác. Mà là những câu bạn tự nói với chính mình trong đầu.</p>
+  <p><em>"Tôi không đủ giỏi."</em><br/><em>"Tôi không làm được."</em><br/><em>"Người như tôi thì không thể..."</em></p>
+  <p>Những câu đó gọi là <strong>niềm tin giới hạn</strong>. Và chúng không phải sự thật — chúng là những kết luận bạn rút ra từ những trải nghiệm đau trong quá khứ.</p>
+
+  <h3>Vòng Lặp Của Niềm Tin</h3>
+  <div class="flowchart">
+    <div class="flow-step">Niềm tin<br/><small>("Tôi không đủ giỏi")</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Hành động<br/><small>(không dám thử)</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Kết quả<br/><small>(không có gì thay đổi)</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step accent">Xác nhận<br/><small>("Thấy chưa, tôi đúng rồi")</small></div>
+  </div>
+  <p>Vòng lặp này chạy tự động — trừ khi bạn dừng lại và nhìn thấy nó.</p>
+
+  <h3>Những Niềm Tin Phổ Biến Nhất</h3>
+  <p>Mình hay gặp những niềm tin này ở phụ nữ 25–40 tuổi:</p>
+  <ul style="padding-left:20px;margin-bottom:16px;color:#4A3520">
+    <li style="margin-bottom:8px"><em>"Phải có tiền mới dám làm điều mình thích"</em></li>
+    <li style="margin-bottom:8px"><em>"Mình phải lo cho gia đình trước đã"</em></li>
+    <li style="margin-bottom:8px"><em>"Người ta làm được nhưng mình thì không thể"</em></li>
+    <li style="margin-bottom:8px"><em>"Mình đã lớn tuổi rồi, muộn rồi"</em></li>
+    <li><em>"Nếu mình thành công, người khác sẽ nghĩ mình kiêu ngạo"</em></li>
+  </ul>
+
+  <div class="story-box">
+    <h4>Điều Đã Thay Đổi Mọi Thứ</h4>
+    <p>Có một giai đoạn tôi luôn muốn thay đổi chồng — luôn mong anh làm theo ý muốn của mình. Khi sự nghiệp mới xây dựng chưa có tiền, anh sốt ruột hỏi thăm, đôi lúc nói những điều khiến tôi tổn thương.</p>
+    <p>Nhưng khi tôi bắt đầu thực hành routine — tập trung thay đổi niềm tin của mình thay vì thay đổi anh — có một ngày anh khóc, xin lỗi tôi, và nói: <em>"Anh ủng hộ em, em cứ làm theo con đường của em."</em></p>
+    <p><strong>Tôi không thay đổi anh. Tôi thay đổi mình — và anh thay đổi theo.</strong></p>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 2 — Viết Lại Câu Chuyện</h4>
+    <p>Bước 1: Viết ra 3 niềm tin giới hạn bạn hay nói với chính mình nhất</p>
+    <div class="write-prompt"><p><em>VD: "Tôi không đủ giỏi để..."<br/>"Người như tôi thì không thể..."<br/>"Tôi phải... trước đã mới được..."</em></p></div>
+    <p style="margin-top:16px">Bước 2: Với mỗi niềm tin, hỏi: <em>"Điều này đến từ đâu? Ai đã nói với tôi điều này lần đầu?"</em></p>
+    <p>Bước 3: Viết lại thành niềm tin mới:</p>
+    <div class="write-prompt"><p><em>"Tôi không đủ giỏi" → "Tôi đang học và tôi giỏi dần lên mỗi ngày"<br/>"Đã quá muộn" → "Hôm nay là sớm nhất trong những ngày còn lại"</em></p></div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c2a" onchange="saveCheck(this);updateProgress()"/><label for="c2a">Đã đọc xong Ngày 2</label></div>
+    <div class="check-item"><input type="checkbox" id="c2b" onchange="saveCheck(this)"/><label for="c2b">Đã viết 3 niềm tin giới hạn và viết lại thành niềm tin mới</label></div>
+    <div class="check-item"><input type="checkbox" id="c2c" onchange="saveCheck(this)"/><label for="c2c">Đã nhận ra: niềm tin giới hạn không phải sự thật, chỉ là câu chuyện cũ</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day1',document.getElementById('nav-day1'))">← Ngày 1</button>
+    <button class="btn btn-next" onclick="showSection('day3',document.getElementById('nav-day3'))">Ngày 3 →</button>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="section" id="day3">
+  <div class="day-header">
+    <div class="day-number">Ngày 3 · 20 phút</div>
+    <h2>Ikigai — Tìm Giao Điểm Của Bạn</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Biết chính xác bạn giỏi gì, yêu gì, thế giới cần gì — và tìm giao điểm của tất cả.</p></div>
+  </div>
+
+  <p><strong>Ikigai</strong> (生き甲斐) trong tiếng Nhật có nghĩa là <em>"lý do để thức dậy mỗi sáng"</em>. Đây là khái niệm từ đảo Okinawa — nơi có nhiều người sống trên 100 tuổi nhất thế giới.</p>
+  <p>Bí mật của họ không phải chế độ ăn hay thuốc men. Mà là họ <strong>biết rõ lý do mình tồn tại</strong>.</p>
+
+  <h3>4 Vòng Tròn Của Ikigai</h3>
+  <div class="ikigai-diagram">
+    <div class="ikigai-grid">
+      <div class="ikigai-cell love">
+        <div class="icon">❤️</div>
+        <h5>Bạn Yêu Gì?</h5>
+        <p>Điều khiến bạn quên thời gian khi làm</p>
+      </div>
+      <div class="ikigai-cell good">
+        <div class="icon">⭐</div>
+        <h5>Bạn Giỏi Gì?</h5>
+        <p>Điều bạn làm tốt hơn phần đông người khác</p>
+      </div>
+      <div class="ikigai-cell world">
+        <div class="icon">🌍</div>
+        <h5>Thế Giới Cần Gì?</h5>
+        <p>Vấn đề bạn có thể giúp người khác giải quyết</p>
+      </div>
+      <div class="ikigai-cell paid">
+        <div class="icon">💰</div>
+        <h5>Ai Trả Tiền?</h5>
+        <p>Điều người khác sẵn sàng chi tiền để có</p>
+      </div>
+    </div>
+    <div class="ikigai-center"><span>IKIGAI<br/>của bạn</span></div>
+    <p style="color:var(--brown);font-size:13px;margin-top:8px">Giao điểm của 4 vòng tròn = điều bạn nên theo đuổi</p>
+  </div>
+
+  <div class="story-box">
+    <h4>Câu Chuyện Của Chị Hiền</h4>
+    <p>Chị Hiền làm văn phòng gần 10 năm. Một ngày chị tìm đến Ikigai — không phải vì muốn đổi nghề, mà vì muốn <em>hiểu mình hơn</em>.</p>
+    <p>Điều chị khám phá ra không phải là một công việc mới. Mà là cách nhìn người chồng khác đi. <em>"Khi hiểu Ikigai của mình, mình không còn bắt anh phải sống theo ý mình nữa. Mình hiểu anh có một Ikigai khác. Và từ đó mình yêu anh theo cách anh cần được yêu — không phải cách mình nghĩ là đúng."</em></p>
+    <p>Chị còn tìm được công việc Affiliate bán hàng yêu thích — một nguồn thu nhập thứ 2 hoàn toàn phù hợp với thế mạnh. <strong>Không phải vì chị thay đổi — mà vì chị nhìn thấy chính mình rõ hơn.</strong></p>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 3 — Vẽ Bản Đồ Ikigai</h4>
+    <p>Trả lời 4 câu hỏi sau — viết ra ít nhất 5 thứ cho mỗi câu:</p>
+    <ol>
+      <li><strong>Tôi yêu gì?</strong> — Điều gì khiến tôi quên cả thời gian khi làm?</li>
+      <li><strong>Tôi giỏi gì?</strong> — Người xung quanh hay nhờ tôi giúp việc gì?</li>
+      <li><strong>Thế giới cần gì?</strong> — Vấn đề nào tôi thấy xung quanh mà muốn giải quyết?</li>
+      <li><strong>Ai trả tiền?</strong> — Điều gì trong danh sách trên đã hoặc có thể tạo ra thu nhập?</li>
+    </ol>
+    <div class="write-prompt">
+      <p><em>Sau khi viết xong 4 danh sách — khoanh tròn những thứ xuất hiện ở nhiều hơn 1 câu hỏi. Đó là Ikigai của bạn đang hiện ra.</em></p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c3a" onchange="saveCheck(this);updateProgress()"/><label for="c3a">Đã đọc xong Ngày 3</label></div>
+    <div class="check-item"><input type="checkbox" id="c3b" onchange="saveCheck(this)"/><label for="c3b">Đã điền 4 danh sách Ikigai</label></div>
+    <div class="check-item"><input type="checkbox" id="c3c" onchange="saveCheck(this)"/><label for="c3c">Đã khoanh tròn ít nhất 1 giao điểm</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day2',document.getElementById('nav-day2'))">← Ngày 2</button>
+    <button class="btn btn-next" onclick="showSection('day4',document.getElementById('nav-day4'))">Ngày 4 →</button>
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="section" id="day4">
+  <div class="day-header">
+    <div class="day-number">Ngày 4 · 20 phút</div>
+    <h2>Bạn Đã Là Ai Rồi?</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Không phải tìm kiếm ai đó để trở thành — mà nhìn thấy con người đã có sẵn trong bạn từ lâu.</p></div>
+  </div>
+
+  <p>Chúng ta hay được hỏi: <em>"Bạn muốn trở thành ai?"</em></p>
+  <p>Nhưng câu hỏi đó ẩn chứa một giả định nguy hiểm — rằng bạn chưa đủ, rằng bạn cần phải trở thành người khác.</p>
+  <p>Thật ra câu hỏi đúng hơn là: <strong>"Khi nào bạn cảm thấy là chính mình nhất — và điều gì đang ngăn bạn sống như thế mỗi ngày?"</strong></p>
+
+  <div class="quote">
+    <p>"Câu hỏi không phải là 'tôi cần trở thành ai?' — mà là 'tôi đã là ai rồi mà chưa dám thừa nhận?'"</p>
+    <cite>— Sunny Trang</cite>
+  </div>
+
+  <h3>3 Câu Hỏi Vàng</h3>
+  <p>Đây là 3 câu hỏi đã thay đổi hướng đi của tôi khi hoang mang nhất. Không có câu trả lời đúng sai. Chỉ có câu trả lời thật.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h5>Câu hỏi 1: Khi nào bạn cảm thấy là chính mình nhất?</h5>
+      <p>Khoảnh khắc nào bạn không cần đóng vai, không cần giả vờ, không cần cố gắng? Đang làm gì, ở đâu, với ai?</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h5>Câu hỏi 2: Nếu không ai phán xét — cuộc sống bạn muốn trông như thế nào?</h5>
+      <p>Không cần lo về "thực tế". Không cần lo về tiền hay ý kiến người khác. Chỉ là: bạn thật sự muốn gì?</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <h5>Câu hỏi 3: Điều gì bạn làm mà không cần ai khen vẫn thấy ý nghĩa?</h5>
+      <p>Đây là manh mối mạnh nhất về thế mạnh thật sự của bạn — điều bạn làm vì yêu thích, không phải vì phần thưởng.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 4 — Thư Gửi Bản Thân</h4>
+    <p>Sau khi trả lời 3 câu hỏi vàng — viết một bức thư ngắn gửi cho bản thân 5 năm sau:</p>
+    <div class="write-prompt">
+      <p><em>"Này [tên bạn] của 5 năm sau,<br/>Tôi biết bạn đang sống một cuộc sống mà...<br/>Điều tôi muốn bạn nhớ nhất là...<br/>Tôi tự hào về bạn vì..."</em></p>
+    </div>
+    <p style="margin-top:16px"><strong>Lưu bức thư này lại.</strong> Đọc lại mỗi khi cảm thấy mất phương hướng.</p>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c4a" onchange="saveCheck(this);updateProgress()"/><label for="c4a">Đã đọc xong Ngày 4</label></div>
+    <div class="check-item"><input type="checkbox" id="c4b" onchange="saveCheck(this)"/><label for="c4b">Đã trả lời 3 câu hỏi vàng</label></div>
+    <div class="check-item"><input type="checkbox" id="c4c" onchange="saveCheck(this)"/><label for="c4c">Đã viết thư gửi bản thân 5 năm sau</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day3',document.getElementById('nav-day3'))">← Ngày 3</button>
+    <button class="btn btn-next" onclick="showSection('day5',document.getElementById('nav-day5'))">Ngày 5 →</button>
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="section" id="day5">
+  <div class="day-header">
+    <div class="day-number">Ngày 5 · 15 phút</div>
+    <h2>Sứ Mệnh & Tầm Nhìn</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Vẽ bức tranh cuộc sống bạn thật sự muốn — và tìm câu nói định nghĩa lý do bạn tồn tại.</p></div>
+  </div>
+
+  <p>Có một cô gái giữ kỷ lục Guinness 3 năm liền bơi qua biển Caribe. Mỗi lần đều xuất sắc. Nhưng một lần cô phải dừng lại giữa chừng và được trực thăng vớt lên.</p>
+  <p>Phóng viên hỏi: <em>"Sao lần này không được?"</em></p>
+  <p>Cô đáp: <em>"Vì tôi không nhìn thấy bờ. Tôi không biết mình đang bơi về đâu."</em></p>
+  <p><strong>Tầm nhìn là ngọn hải đăng của cuộc đời bạn.</strong> Không có tầm nhìn, dù bạn giỏi đến đâu cũng có thể bỏ cuộc giữa chừng.</p>
+
+  <h3>Sứ Mệnh Không Phải Là Điều Lớn Lao</h3>
+  <p>Nhiều người nghĩ sứ mệnh phải là thứ gì đó vĩ đại. Thật ra sứ mệnh là điều bạn làm mỗi ngày với <em>ý thức</em> rằng nó có giá trị — với bạn và với người khác.</p>
+
+  <div class="quote">
+    <p>"Không thể mong cuộc đời hết thử thách. Chỉ mong nội lực đủ vững vàng để đi qua những cơn bão — mà vẫn giữ được bình an bên trong."</p>
+    <cite>— Sunny Trang</cite>
+  </div>
+
+  <div class="story-box">
+    <h4>Tầm Nhìn Của Sunny</h4>
+    <p>Tầm nhìn của tôi là <em>1 triệu phụ nữ Việt được thắp sáng</em>. Nghe có vẻ lớn. Nhưng nó bắt đầu từ 1 người — chính tôi. Rồi 10 người. Rồi 1.000 người trong cộng đồng Người Mặt Trời.</p>
+    <p>Tầm nhìn không cần phải hoàn hảo ngay từ đầu. Nó chỉ cần đủ lớn để kéo bạn dậy mỗi sáng.</p>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 5 — Câu Sứ Mệnh & Bức Tranh Tầm Nhìn</h4>
+    <p><strong>Phần 1:</strong> Vẽ hoặc mô tả bằng chữ bức tranh cuộc sống của bạn 5 năm tới:</p>
+    <div class="write-prompt">
+      <p><em>Buổi sáng của bạn trông như thế nào?<br/>Bạn đang làm công việc gì?<br/>Mối quan hệ xung quanh bạn ra sao?<br/>Bạn cảm thấy thế nào khi thức dậy?</em></p>
+    </div>
+    <p style="margin-top:16px"><strong>Phần 2:</strong> Hoàn thành câu sứ mệnh:</p>
+    <div class="write-prompt">
+      <p><em>"Tôi tồn tại để ________ , bằng cách ________ , cho ________."</em></p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c5a" onchange="saveCheck(this);updateProgress()"/><label for="c5a">Đã đọc xong Ngày 5</label></div>
+    <div class="check-item"><input type="checkbox" id="c5b" onchange="saveCheck(this)"/><label for="c5b">Đã vẽ/mô tả bức tranh cuộc sống 5 năm</label></div>
+    <div class="check-item"><input type="checkbox" id="c5c" onchange="saveCheck(this)"/><label for="c5c">Đã viết xong câu sứ mệnh</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day4',document.getElementById('nav-day4'))">← Ngày 4</button>
+    <button class="btn btn-next" onclick="showSection('day6',document.getElementById('nav-day6'))">Ngày 6 →</button>
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="section" id="day6">
+  <div class="day-header">
+    <div class="day-number">Ngày 6 · 20 phút</div>
+    <h2>Routine Tự Thắp Sáng</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Xây dựng nhịp sống mới nuôi dưỡng con người bạn muốn trở thành — mỗi ngày, không cần động lực.</p></div>
+  </div>
+
+  <p>Động lực đến và đi. Nhưng <strong>routine ở lại</strong>.</p>
+  <p>Guồng cũ rất mạnh — nó kéo bạn về con người cũ mỗi khi bạn mệt, bận, hay bị xao lãng. Cách duy nhất để thoát ra không phải là "cố gắng hơn" — mà là <strong>xây một guồng mới đủ mạnh để thay thế</strong>.</p>
+
+  <h3>Routine Của Sunny — Thực Tế, Không Lý Thuyết</h3>
+  <div class="routine-grid">
+    <div class="routine-card morning">
+      <h5>☀ Buổi Sáng</h5>
+      <ul>
+        <li>Dậy sớm — trước khi thế giới ồn ào</li>
+        <li>Thiền 10 phút — chỉ cần ngồi và thở</li>
+        <li>Cười 17 giây — kích hoạt dopamine</li>
+        <li>Viết 10 điều biết ơn</li>
+        <li>Đọc sách 30 phút → rút ra 1 điều</li>
+        <li>1 điều khiến trái tim ca hát</li>
+        <li>Vẽ ước mơ / hình dung ngày mới</li>
+      </ul>
+    </div>
+    <div class="routine-card evening">
+      <h5 style="color:#F5A623">🌙 Buổi Tối</h5>
+      <ul>
+        <li>Đi bộ 30 phút — thanh lọc tâm trí</li>
+        <li>Viết nhật ký — quan sát lại mình</li>
+        <li>3 điều thú vị hôm nay</li>
+        <li>2 hành động sẽ làm ngay mai</li>
+        <li>1 điều khiến trái tim ca hát</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="story-box">
+    <h4>Điều Thực Sự Xảy Ra Sau Khi Có Routine</h4>
+    <p><em>"Từ khi có routine sáng tối, cuộc sống mình bình an hơn, vui vẻ hơn. Mình tập trung vào những điều xây dựng bản thân thay vì phá huỷ mình. Nhìn người thân xung quanh với ánh mắt biết ơn."</em></p>
+    <p>Quan trọng hơn — tôi không còn muốn thay đổi người khác. Tôi tập trung thay đổi mình. Và kỳ diệu thay — những người xung quanh cũng thay đổi theo.</p>
+    <p><strong>Routine không chỉ thay đổi ngày của bạn. Nó thay đổi con người bạn.</strong></p>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 6 — Thiết Kế Routine Của Riêng Bạn</h4>
+    <p>Không copy routine của Sunny. Thiết kế routine phù hợp với <em>con người bạn muốn trở thành</em>:</p>
+
+    <div class="template-box">
+      <h4>Template Routine Cá Nhân</h4>
+      <div class="template-line"><strong>Buổi sáng tôi sẽ:</strong> (viết 3–5 thứ, tổng không quá 30 phút)</div>
+      <div class="template-line"><br/>1. ___________</div>
+      <div class="template-line"><br/>2. ___________</div>
+      <div class="template-line"><br/>3. ___________</div>
+      <div class="template-line" style="margin-top:16px"><strong>Buổi tối tôi sẽ:</strong> (viết 2–3 thứ)</div>
+      <div class="template-line"><br/>1. ___________</div>
+      <div class="template-line"><br/>2. ___________</div>
+      <div class="template-line" style="margin-top:16px"><strong>Tôi bắt đầu từ ngày:</strong> ___________</div>
+    </div>
+
+    <div class="write-prompt">
+      <p><em>Bắt đầu nhỏ — 1 thứ thôi. Làm đều 7 ngày rồi thêm dần. Đừng thêm 10 thứ cùng lúc.</em></p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c6a" onchange="saveCheck(this);updateProgress()"/><label for="c6a">Đã đọc xong Ngày 6</label></div>
+    <div class="check-item"><input type="checkbox" id="c6b" onchange="saveCheck(this)"/><label for="c6b">Đã thiết kế routine sáng/tối cá nhân</label></div>
+    <div class="check-item"><input type="checkbox" id="c6c" onchange="saveCheck(this)"/><label for="c6c">Đã chọn 1 thứ sẽ bắt đầu ngay ngày mai</label></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day5',document.getElementById('nav-day5'))">← Ngày 5</button>
+    <button class="btn btn-next" onclick="showSection('day7',document.getElementById('nav-day7'))">Ngày 7 →</button>
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="section" id="day7">
+  <div class="day-header">
+    <div class="day-number">Ngày 7 · 20 phút</div>
+    <h2>Tuyên Ngôn Người Mặt Trời</h2>
+    <div class="day-objective"><p><strong>Mục tiêu:</strong> Cam kết với bản thân. Định nghĩa bạn là ai — bằng ngôn ngữ của chính bạn.</p></div>
+  </div>
+
+  <p>Bạn đã đi qua 6 ngày. Bạn đã nhìn thấy mình — qua Bức Thư Sawubona, qua Ikigai, qua 3 Câu Hỏi Vàng, qua Routine.</p>
+  <p>Hôm nay là ngày bạn nói với chính mình: <strong>"Sikhona — Tôi ở đây."</strong></p>
+  <p>Không phải là người khác muốn bạn là. Không phải vai trò bạn đang đóng. Mà là <em>bạn</em> — con người thật sự, đã ở đây từ đầu, chỉ chờ được nhìn thấy.</p>
+
+  <div class="stat-card">
+    <div class="stat-item">
+      <div class="stat-num">7</div>
+      <div class="stat-desc">ngày hành trình</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15'</div>
+      <div class="stat-desc">mỗi ngày</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-desc">con người thật của bạn</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <h4>✍ Bài Tập Ngày 7 — Viết Tuyên Ngôn</h4>
+    <p>Nhìn lại tất cả những gì bạn đã viết trong 6 ngày qua — rồi điền vào Tuyên Ngôn bên dưới.</p>
+  </div>
+
+  <div class="declaration">
+    <h3>Tuyên Ngôn Người Mặt Trời</h3>
+    <div class="declaration-lines">
+      <div>Tôi là <span>________________________________</span></div>
+      <div>Tôi sống để <span>________________________________</span></div>
+      <div>Thế mạnh của tôi là <span>________________________________</span></div>
+      <div>Tôi cam kết sống thật với <span>________________________________</span></div>
+      <div>Mỗi ngày tôi sẽ <span>________________________________</span></div>
+      <div>Tôi biết ơn vì <span>________________________________</span></div>
+      <div style="border:none;padding-top:24px;text-align:right;color:rgba(255,255,255,0.4);font-size:12px">Ký tên: _________________ · Ngày: _________________</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    <p>"Sawubona — Tôi nhìn thấy bạn.<br/>Sikhona — Tôi ở đây.<br/>Namaste — Phần thiêng liêng trong tôi kính chào phần thiêng liêng trong bạn."</p>
+  </div>
+
+  <p>Hành trình không kết thúc ở đây. Đây là nơi nó <strong>bắt đầu</strong>.</p>
+  <p>Chia sẻ Tuyên Ngôn của bạn với 1 người bạn tin tưởng — hoặc trong cộng đồng Người Mặt Trời. Khi bạn nói ra, nó trở thành thật hơn.</p>
+
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c7a" onchange="saveCheck(this);updateProgress()"/><label for="c7a">Đã đọc xong Ngày 7</label></div>
+    <div class="check-item"><input type="checkbox" id="c7b" onchange="saveCheck(this)"/><label for="c7b">Đã viết xong Tuyên Ngôn Người Mặt Trời</label></div>
+    <div class="check-item"><input type="checkbox" id="c7c" onchange="saveCheck(this)"/><label for="c7c">Đã chia sẻ với ít nhất 1 người</label></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--gold-light),var(--white));border:1px solid var(--border);border-radius:16px;padding:28px;margin-top:28px;text-align:center">
+    <p style="font-size:18px;font-weight:700;color:var(--dark);margin-bottom:8px">Bước Tiếp Theo</p>
+    <p style="color:var(--brown)">Tham gia cộng đồng <strong>Người Mặt Trời</strong> để tiếp tục hành trình cùng những người cùng chí hướng.</p>
+    <p style="color:var(--brown-light);font-size:13px;margin-top:8px">Sunny Trang · sunnytrangbiz@gmail.com · 0913 922 713</p>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day6',document.getElementById('nav-day6'))">← Ngày 6</button>
+    <button class="btn btn-next" onclick="showSection('appendix',document.querySelector('[onclick*=appendix]'))">Phụ Lục →</button>
+  </div>
+</div>
+
+<!-- APPENDIX -->
+<div class="section" id="appendix">
+  <div class="day-header">
+    <div class="day-number">Phụ Lục</div>
+    <h2>Tổng Hợp Công Cụ</h2>
+  </div>
+
+  <div class="appendix-section">
+    <h3>30 Câu Hỏi Sawubona</h3>
+    <p style="color:var(--brown);font-size:14px;margin-bottom:16px">Dùng khi cần kết nối lại với chính mình. Chọn 1 câu mỗi ngày, ngồi viết 10 phút.</p>
+    <div style="columns:2;column-gap:20px;font-size:13px;color:#4A3520">
+      <p>1. Điều gì khiến tôi thấy sống nhất?</p>
+      <p>2. Tôi sợ điều gì nhất và tại sao?</p>
+      <p>3. Khi nào tôi cảm thấy là chính mình nhất?</p>
+      <p>4. Điều gì tôi đã bỏ quên về bản thân?</p>
+      <p>5. Tôi muốn người khác nhớ gì về tôi?</p>
+      <p>6. Nếu thất bại không tồn tại, tôi sẽ làm gì?</p>
+      <p>7. Điều gì tôi không thể không làm?</p>
+      <p>8. Khi tôi buồn, điều gì giúp tôi tốt nhất?</p>
+      <p>9. Tôi biết ơn điều gì nhất hôm nay?</p>
+      <p>10. Điều gì tôi đang trì hoãn mà biết nên làm?</p>
+      <p>11. Ai khiến tôi cảm thấy được là chính mình?</p>
+      <p>12. Tôi đang hy sinh điều gì để làm vui ai?</p>
+      <p>13. Điều gì tôi muốn nói với bố/mẹ?</p>
+      <p>14. Tôi đang tự đặt giới hạn gì cho mình?</p>
+      <p>15. Điều gì tôi cần thêm trong cuộc sống?</p>
+      <p>16. Điều gì tôi cần buông bỏ?</p>
+      <p>17. Tôi sẽ làm gì nếu biết không ai xem xét?</p>
+      <p>18. Khoảnh khắc hạnh phúc nhất tôi nhớ là gì?</p>
+      <p>19. Tôi muốn cuộc sống đơn giản hơn ở đâu?</p>
+      <p>20. Điều tôi tự hào nhất về bản thân là gì?</p>
+      <p>21. Điều gì khiến tôi ghen tị — và nó nói lên gì?</p>
+      <p>22. Tôi cần tha thứ cho ai — kể cả bản thân?</p>
+      <p>23. Điều gì đang tiêu hao năng lượng của tôi?</p>
+      <p>24. Tôi cần ranh giới gì mà chưa đặt ra?</p>
+      <p>25. Điều gì tôi muốn học thêm?</p>
+      <p>26. Tôi đang trốn tránh điều gì?</p>
+      <p>27. Điều gì tôi làm chỉ vì người khác mong đợi?</p>
+      <p>28. Nếu có thêm 2 tiếng mỗi ngày, tôi làm gì?</p>
+      <p>29. Điều gì tôi muốn con/thế hệ sau học từ tôi?</p>
+      <p>30. Tôi cần nghe điều gì nhất lúc này?</p>
+    </div>
+  </div>
+
+  <div class="appendix-section">
+    <h3>Template Routine Hàng Ngày</h3>
+    <div class="template-box">
+      <h4>Routine Sáng — ___/___/____</h4>
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" id="ra1" onchange="saveCheck(this)"/><label for="ra1">Dậy lúc: _______ · Thiền _____ phút</label></div>
+        <div class="check-item"><input type="checkbox" id="ra2" onchange="saveCheck(this)"/><label for="ra2">Cười 17 giây ☀</label></div>
+        <div class="check-item"><input type="checkbox" id="ra3" onchange="saveCheck(this)"/><label for="ra3">10 điều biết ơn: ________________________________</label></div>
+        <div class="check-item"><input type="checkbox" id="ra4" onchange="saveCheck(this)"/><label for="ra4">Đọc sách 30 phút · Rút ra: ________________________________</label></div>
+        <div class="check-item"><input type="checkbox" id="ra5" onchange="saveCheck(this)"/><label for="ra5">1 điều khiến trái tim ca hát hôm nay: ________________________________</label></div>
+      </div>
+      <h4 style="margin-top:20px">Routine Tối — ___/___/____</h4>
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" id="re1" onchange="saveCheck(this)"/><label for="re1">Đi bộ 30 phút 🌙</label></div>
+        <div class="check-item"><input type="checkbox" id="re2" onchange="saveCheck(this)"/><label for="re2">3 điều thú vị hôm nay: ________________________________</label></div>
+        <div class="check-item"><input type="checkbox" id="re3" onchange="saveCheck(this)"/><label for="re3">2 hành động ngày mai: 1. _____________ 2. _____________</label></div>
+        <div class="check-item"><input type="checkbox" id="re4" onchange="saveCheck(this)"/><label for="re4">Nhật ký: ________________________________</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:32px 0;border-top:1px solid var(--border);margin-top:32px">
+    <div style="width:48px;height:48px;background:linear-gradient(135deg,#F5A623,#E8960C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 12px">☀</div>
+    <p style="font-weight:700;color:var(--dark)">Sunny Trang · Người Mặt Trời</p>
+    <p style="color:var(--brown);font-size:13px">Lan tỏa giá trị tích cực và hạnh phúc</p>
+    <p style="color:var(--brown-light);font-size:12px;margin-top:4px">sunnytrangbiz@gmail.com · 0913 922 713</p>
+    <p style="color:#C8B89A;font-size:11px;margin-top:16px">© 2025 Sunny Trang. Tất cả quyền được bảo lưu.<br/>Không sao chép dưới bất kỳ hình thức nào khi chưa có sự cho phép của tác giả.</p>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-prev" onclick="showSection('day7',document.getElementById('nav-day7'))">← Ngày 7</button>
+    <button class="btn btn-next" onclick="window.print()">🖨 Tải PDF</button>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+const DAYS = ['day1','day2','day3','day4','day5','day6','day7'];
+
+function showSection(id, navEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+  loadChecks();
+}
+
+function saveCheck(el) {
+  localStorage.setItem('ebook_' + el.id, el.checked);
+}
+
+function loadChecks() {
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    const saved = localStorage.getItem('ebook_' + cb.id);
+    if(saved !== null) cb.checked = saved === 'true';
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  let done = 0;
+  DAYS.forEach(d => {
+    const key = 'ebook_c' + d.replace('day','') + 'a';
+    if(localStorage.getItem(key) === 'true') {
+      done++;
+      const nav = document.getElementById('nav-' + d);
+      if(nav) nav.classList.add('done');
+    }
+  });
+  const pct = Math.round((done / 7) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' / 7 ngày';
+}
+
+loadChecks();
+</script>
+</body>
+</html>
