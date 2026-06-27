@@ -610,11 +610,10 @@
     const emailTag = 'VID_' + email.split('@')[0];
     const ckContent = emailTag;
 
-    // Sinh QR động qua VietQR
-    const qrUrl = 'https://img.vietqr.io/image/MB-0961205720-compact2.png'
-      + '?amount=199000'
-      + '&addInfo=' + encodeURIComponent(ckContent)
-      + '&accountName=NGUYEN%20THI%20THANH%20TRANG';
+    // Sinh QR động qua SePay
+    const qrUrl = 'https://qr.sepay.vn/img?acc=0961205720&bank=MB&amount=199000&des='
+      + encodeURIComponent(ckContent)
+      + '&template=compact';
 
     document.getElementById('qrImage').src = qrUrl;
     document.getElementById('ckContent').textContent = ckContent;
