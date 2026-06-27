@@ -505,29 +505,78 @@
 
 <!-- POPUP FORM -->
 <div class="popup-overlay" id="popupOverlay" onclick="closePopupOnOverlay(event)">
-  <div class="popup-box">
-    <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center text-white text-xl mx-auto mb-4">☀</div>
-    <h3 class="text-2xl font-black text-dark mb-2">Bắt Đầu Hành Trình</h3>
-    <p class="text-brown-soft text-sm mb-6">Điền thông tin để nhận workbook + được thêm vào nhóm Người Mặt Trời</p>
+  <div class="popup-box" style="max-width:520px">
 
-    <input type="text" class="input-field" placeholder="Họ và tên của bạn" id="formName" />
-    <input type="email" class="input-field" placeholder="Email nhận sản phẩm" id="formEmail" />
-    <input type="tel" class="input-field" placeholder="Số điện thoại (để Sunny liên hệ)" id="formPhone" />
+    <!-- BƯỚC 1: Form thông tin -->
+    <div id="step1">
+      <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center text-white text-xl mx-auto mb-4">☀</div>
+      <h3 class="text-2xl font-black text-dark mb-2">Bắt Đầu Hành Trình</h3>
+      <p class="text-brown-soft text-sm mb-6">Điền thông tin để nhận workbook + được thêm vào nhóm Người Mặt Trời</p>
 
-    <div class="bg-gold-light rounded-xl p-4 mb-4 text-left">
-      <p class="text-sm font-bold text-dark mb-1">Tóm tắt đơn hàng</p>
-      <div class="flex justify-between text-sm text-brown-soft">
-        <span>I See You Workbook + Ikigai Bonus</span>
-        <span class="font-bold text-dark">199.000đ</span>
+      <input type="text" class="input-field" placeholder="Họ và tên của bạn" id="formName" />
+      <input type="email" class="input-field" placeholder="Email nhận sản phẩm (quan trọng!)" id="formEmail" />
+      <input type="tel" class="input-field" placeholder="Số điện thoại (để Sunny liên hệ)" id="formPhone" />
+
+      <div class="bg-gold-light rounded-xl p-4 mb-4 text-left">
+        <p class="text-sm font-bold text-dark mb-1">Tóm tắt đơn hàng</p>
+        <div class="flex justify-between text-sm text-brown-soft">
+          <span>I See You Workbook + Ikigai Bonus</span>
+          <span class="font-bold text-dark">199.000đ</span>
+        </div>
       </div>
+
+      <button onclick="showQR()" class="btn-gold w-full mb-3" style="font-size:16px; padding:14px 24px;">
+        Tiếp Theo — Xem QR Thanh Toán →
+      </button>
+      <button onclick="closePopup()" class="text-sm text-brown-soft hover:text-dark transition-colors">Đóng</button>
     </div>
 
-    <button onclick="submitForm()" class="btn-gold w-full mb-3" style="font-size:16px; padding:14px 24px;">
-      Xác Nhận & Thanh Toán — 199k
-    </button>
-    <button onclick="closePopup()" class="text-sm text-brown-soft hover:text-dark transition-colors">Đóng</button>
+    <!-- BƯỚC 2: QR thanh toán -->
+    <div id="step2" style="display:none">
+      <div class="w-12 h-12 gold-gradient rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">💳</div>
+      <h3 class="text-xl font-black text-dark mb-1">Quét QR Chuyển Khoản</h3>
+      <p class="text-brown-soft text-sm mb-4">Chuyển khoản xong → sản phẩm tự động gửi về email của bạn</p>
 
-    <p class="text-xs text-gray-400 mt-4">Sau khi xác nhận, Sunny sẽ liên hệ qua số điện thoại để hướng dẫn thanh toán và giao sản phẩm.</p>
+      <!-- QR động -->
+      <div style="background:#f8f8f8;border-radius:16px;padding:16px;margin-bottom:16px;text-align:center">
+        <img id="qrImage" src="" alt="QR MB Bank" style="width:200px;height:200px;border-radius:8px;margin:0 auto;display:block"/>
+        <p style="font-size:12px;color:#888;margin-top:8px">Quét bằng app ngân hàng bất kỳ</p>
+      </div>
+
+      <!-- Thông tin CK -->
+      <div style="background:#FEF3DC;border-radius:12px;padding:16px;text-align:left;margin-bottom:16px;font-size:13px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#7A5C2E">Ngân hàng</span>
+          <strong>MB Bank</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#7A5C2E">Số tài khoản</span>
+          <strong>0961205720</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#7A5C2E">Chủ tài khoản</span>
+          <strong>NGUYEN THI THANH TRANG</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#7A5C2E">Số tiền</span>
+          <strong style="color:#E8960C">199.000đ</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid #F0E0B8;padding-top:8px;margin-top:4px">
+          <span style="color:#7A5C2E">Nội dung CK</span>
+          <strong id="ckContent" style="color:#bd3a11;font-size:12px;word-break:break-all;max-width:180px;text-align:right"></strong>
+        </div>
+      </div>
+
+      <div style="background:#E8F5E9;border-radius:10px;padding:12px;font-size:12px;color:#2E7D32;margin-bottom:16px">
+        ✅ Sau khi chuyển khoản thành công, ebook sẽ tự động gửi về email: <strong id="confirmEmail"></strong>
+      </div>
+
+      <button onclick="closePopup()" class="btn-gold w-full mb-2" style="font-size:14px;padding:12px 20px">
+        Đã Chuyển Khoản Xong ✓
+      </button>
+      <button onclick="document.getElementById('step1').style.display='block';document.getElementById('step2').style.display='none'" class="text-sm text-brown-soft hover:text-dark transition-colors">← Quay lại</button>
+    </div>
+
   </div>
 </div>
 
@@ -544,17 +593,35 @@
   function closePopupOnOverlay(e) {
     if (e.target === document.getElementById('popupOverlay')) closePopup();
   }
-  function submitForm() {
-    const name = document.getElementById('formName').value;
-    const email = document.getElementById('formEmail').value;
-    const phone = document.getElementById('formPhone').value;
+  function showQR() {
+    const name = document.getElementById('formName').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const phone = document.getElementById('formPhone').value.trim();
     if (!name || !email || !phone) {
-      alert('Vui lòng điền đầy đủ thông tin nhé!');
+      alert('Vui lòng điền đầy đủ họ tên, email và số điện thoại nhé!');
       return;
     }
-    // TODO B4: Thay bằng webhook thực (Resend + SePay)
-    alert('Cảm ơn ' + name + '! Sunny sẽ liên hệ với bạn qua số ' + phone + ' trong vòng 24h. ☀');
-    closePopup();
+    if (!email.includes('@')) {
+      alert('Email không hợp lệ, vui lòng kiểm tra lại!');
+      return;
+    }
+
+    // Tạo nội dung chuyển khoản nhúng email
+    const emailTag = 'VID_' + email.split('@')[0];
+    const ckContent = emailTag;
+
+    // Sinh QR động qua VietQR
+    const qrUrl = 'https://img.vietqr.io/image/MB-0961205720-compact2.png'
+      + '?amount=199000'
+      + '&addInfo=' + encodeURIComponent(ckContent)
+      + '&accountName=NGUYEN%20THI%20THANH%20TRANG';
+
+    document.getElementById('qrImage').src = qrUrl;
+    document.getElementById('ckContent').textContent = ckContent;
+    document.getElementById('confirmEmail').textContent = email;
+
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
   }
 
   // Countdown — 10 ngày từ bây giờ
