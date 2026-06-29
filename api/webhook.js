@@ -1,4 +1,6 @@
-const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbyJqJ4mp8FnTR8ChetYdNrXY-NiQNLBluj1UYLNsLO5l_jyTJk93f2jhaNCuOlRy1qA/exec';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const config = { api: { bodyParser: false } };
 
@@ -14,7 +16,7 @@ function extractEmail(des = '') {
 async function sendTelegram(order) {
   if (!process.env.TELEGRAM_TOKEN || !process.env.TELEGRAM_CHAT_ID) return;
   const now = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-  const msg = `🛒 ĐƠN MỚI!\n💰 ${Number(order.amount).toLocaleString('vi-VN')}đ\n📧 ${order.email}\n⏰ ${now}\n✉️ Email ebook đã gửi tự động`;
+  const msg = `🛒 ĐƠN MỚI!\n💰 ${Number(order.amount).toLocaleString('vi-VN')}đ\n📧 Khách: ${order.email}\n⏰ ${now}\n✉️ Email thông báo đã gửi về sunnynguyencoach@gmail.com`;
   await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -23,10 +25,25 @@ async function sendTelegram(order) {
 }
 
 async function sendEmail(order) {
-  await fetch(GMAIL_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: order.email, transaction_id: order.transaction_id }),
+  await resend.emails.send({
+    from: 'onboarding@resend.dev',
+    to: 'sunnynguyencoach@gmail.com',
+    subject: `☀ ĐƠN MỚI - Ebook I See You cho ${order.email}`,
+    html: `
+      <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px;background:#FDF8F0">
+        <h2 style="color:#1A1208">☀ Có đơn hàng mới!</h2>
+        <p><strong>Email khách:</strong> ${order.email}</p>
+        <p><strong>Số tiền:</strong> ${Number(order.amount).toLocaleString('vi-VN')}đ</p>
+        <p><strong>Mã GD:</strong> ${order.transaction_id}</p>
+        <hr style="border:1px solid #F0E0B8;margin:16px 0"/>
+        <p style="color:#7A5C2E">Gửi link ebook này cho khách <strong>${order.email}</strong>:</p>
+        <a href="https://i-see-you-psi.vercel.app/ebook.html"
+           style="display:inline-block;padding:14px 28px;background:#F5A623;color:white;text-decoration:none;font-weight:700;border-radius:10px;margin:8px 0">
+          ☀ Link Ebook I See You
+        </a>
+        <p style="color:#C8B89A;font-size:12px;margin-top:16px">Sunny Trang · sunnytrangbiz@gmail.com</p>
+      </div>
+    `
   });
 }
 
